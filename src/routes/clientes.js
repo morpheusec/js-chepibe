@@ -5,7 +5,7 @@ const mysqlConnection = require('../database');
 const { reset } = require('nodemon');
 const { query } = require('express');
 //listado de todos los clientes
-router.get('/' , (req,res) =>{
+router.get('/client' , (req,res) =>{
     mysqlConnection.query('SELECT * FROM cliente',(err,rows,fields) => {
         if(!err)
         {
@@ -22,7 +22,7 @@ router.get('/' , (req,res) =>{
 });
 //clientes por id
 
-router.get('/:id', (req,res) =>{
+router.get('/client/:id', (req,res) =>{
     const {id}=req.params;
     mysqlConnection.query('SELECT * FROM cliente WHERE cod_cliente=?',[id],(err,rows,fields) => {
         if(!err)
@@ -42,7 +42,7 @@ router.get('/:id', (req,res) =>{
 
 // añadir clientes
 
-router.post('/', (req,res) => {
+router.post('/client', (req,res) => {
     const {cod_cliente,ci_cliente,nombre,direccion,telefono,email} = req.body;
 const query= `
             CALL clienteAddOrEdit(?,?,?,?,?,?)`;
@@ -57,7 +57,7 @@ mysqlConnection.query(query,[cod_cliente,ci_cliente,nombre,direccion,telefono,em
 });
 });
 //actualizar clientes
-router.put('/:id', (req,res) => {
+router.put('/client/:id', (req,res) => {
         const {ci_cliente,nombre,direccion,telefono,email} = req.body;
         const {id} = req.params;
         const query =`CALL clienteAddOrEdit(?,?,?,?,?,?)`;
@@ -74,7 +74,7 @@ router.put('/:id', (req,res) => {
       
 });
 //borrar clientes
-router.delete('/:id', (req,res) => {
+router.delete('/client/:id', (req,res) => {
     const {id} = req.params;
 
     mysqlConnection.query('delete from cliente where cod_cliente=?',[id], (err,rows,fields) => {

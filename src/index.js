@@ -14,7 +14,7 @@ app.set('port',process.env.PORT || 3000);
 app.use(express.json());
 //routes
 app.use(require('./routes/clientes'));
-
+app.use(require('./routes/productos'));
 //static files
 //app.use(express.static(path.join(__dirname,'public')));
 
