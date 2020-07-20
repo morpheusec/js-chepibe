@@ -60,10 +60,10 @@ mysqlConnection.query(query,[cod_cliente,ci_cliente,nombre,direccion,telefono,em
 router.put('/:id', (req,res) => {
         const {ci_cliente,nombre,direccion,telefono,email} = req.body;
         const {id} = req.params;
-        const query =`CALL clienteAddOrEdit(@id,?,?,?,?,?)`;
+        const query =`CALL clienteAddOrEdit(?,?,?,?,?,?)`;
         mysqlConnection.query(query,[id,ci_cliente,nombre,direccion,telefono,email], (err,rows,field) => {
             if (!err){
-                    res.json ({"Status": 'Cliente Actualizado'});
+                    res.json ({Status: 'Cliente Actualizado'});
                     console.log('Rows affected:', `CHANGED ${rows.changeRows} rows(S)`);
 
             }    else{
