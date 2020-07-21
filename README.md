@@ -1,3 +1,3 @@
 # js-chepibe
-interface para listado de campos sobre api airtable
+interface para pedidos de un restaurante sobre api airtable/mysql+nodejs
 Este es un proyecto de prueba para js
